@@ -1,0 +1,31 @@
+{
+  "name": "blog-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gravatar": "^1.8.0",
+    "highlight.js": "^9.15.6",
+    "jsonwebtoken": "^8.5.0",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-passport": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
+    "koa-static": "^5.0.0",
+    "markdown-it": "^8.4.2",
+    "mongoose": "^5.4.18",
+    "passport-jwt": "^4.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "silly-datetime": "^0.1.2",
+    "validator": "^10.11.0"
+  }
+}
