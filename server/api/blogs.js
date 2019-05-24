@@ -28,7 +28,6 @@ router.get('/', async ctx => {
             ctx.status = 200;
             ctx.body = blogs;
         } catch (e) {
-            console.log(e);
             ctx.status = 500;
             ctx.body = { msg: "数据库获取数据失败。" };
         }
@@ -53,7 +52,6 @@ router.get('/all', passport.authenticate('jwt', { session: false }), async ctx =
             ctx.body = { msg: 'access denied.' };
         }
     } catch (e) {
-        console.log(e);
         ctx.status = 404;
         ctx.body = { msg: 'err' };
     }
@@ -88,7 +86,6 @@ router.post('/add', passport.authenticate('jwt', { session: false }), async ctx 
         // console.log(admin);
         if (admin.length > 0) {
             const data = ctx.request.body;
-            console.log(data);
             // 验证数据然后添加到数据库
             const blog = {
                 author: ctx.state.user.name,
@@ -193,24 +190,27 @@ router.post('/edit', passport.authenticate('jwt', { session: false }), async ctx
         // console.log(admin);
         if (admin.length > 0) {
             const data = ctx.request.body;
+            console.log(data);
             // 验证数据然后添加到数据库
-            const blog = {};
-            blog.author = ctx.state.user.name;
-            blog.summary = data.summary || '';
-            blog.title = data.title || 'No title';
-            blog.category = data.category || '乱八七糟';
-            blog.content = data.content || 'air';
-            blog.cover = data.cover || '';
-            blog.last_change_time = new Date();
+            const blog = {
+                "author": ctx.state.user.name,
+                "summary": data.summary || '',
+                "title": data.title || 'No title',
+                "category": data.category || '乱八七糟',
+                "content": data.content || 'air',
+                "cover": data.cover || '',
+                "last_change_time": new Date()
+            };
 
             // 数据验证
-            await Blog.findOneAndUpdate(
-                { _id: data.id },
-                { $set: blog },
-                { new: true }
-            ).then(blog => {
-                ctx.status = 200;
-                ctx.body = { msg: 'edit blog success.', blog_back: blog };
+            await Blog.updateOne(
+                { _id: data._id },
+                { $set: blog }
+            ).then(res => {
+                if(res.n == 1){
+                    ctx.status = 200;
+                    ctx.body = { msg: 'edit blog success.', blog_back: res };
+                }
             });
         } else {
             ctx.status = 400;

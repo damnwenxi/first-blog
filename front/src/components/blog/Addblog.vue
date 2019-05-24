@@ -203,6 +203,7 @@ export default {
   text-align: left;
   display: block;
   margin-left: 0;
+  margin-bottom: 5px;
   /* float: left; */
   border-left: 4px solid rgb(175, 50, 60);
 }
@@ -218,4 +219,5 @@ export default {
 .container {
   max-width: 90%;
 }
+
 </style>

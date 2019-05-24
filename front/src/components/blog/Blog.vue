@@ -29,5 +29,6 @@ export default {
 #tip {
   margin-top: 20px;
   margin-bottom: 50px;
+  min-height: 100%;
 }
 </style>

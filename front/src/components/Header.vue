@@ -36,12 +36,11 @@
           <li class="menu_item">
             <Dropdown>
               <a href="javascript:void(0)">
-                <Icon type="ios-infinite-outline"/>乱七八糟
+                <Icon type="ios-infinite-outline"/>关于
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem>友情链接</DropdownItem>
+                <DropdownItem><router-link to="/about">我的信息</router-link></DropdownItem>
                 <DropdownItem>作品集</DropdownItem>
-                <DropdownItem>关于我</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </li>

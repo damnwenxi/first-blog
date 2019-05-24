@@ -9,12 +9,13 @@
         <router-link id="title_a" to="blogs/detail">{{blog.author}}</router-link>发布
         <span>&nbsp</span>
         最后编辑于
-        <span>{{blog.last_change_time}}</span>
+        <!-- blog.last_change_time -->
+        <span>{{time}}</span>
       </p>
       <Divider dashed/>
       <h1 class="title">
         {{blog.title}}
-        <a href="javascript:void(0);">编辑</a>
+        <router-link :to="{name:'edit',query:{id:blog._id}}">编辑</router-link>
         <a href="javascript:void(0);">删除</a>
       </h1>
     </div>
@@ -31,8 +32,6 @@
       id="text"
       v-model="blog.content"
     />
-
-    <Divider dashed/>
     <div class="comment"></div>
   </div>
 </template>
@@ -40,7 +39,8 @@
 export default {
   data() {
     return {
-      blog: {}
+      blog: {},
+      time: ''
     };
   },
   created() {
@@ -48,6 +48,9 @@ export default {
       .get("/blogs?id=" + this.$route.query.id)
       .then(response => {
         this.blog = response.data;
+        var time = response.data.last_change_time;
+        var date = new Date(time).toLocaleString();
+        this.time = date;
       });
   }
 };
@@ -62,7 +65,6 @@ export default {
 }
 #text {
   min-height: 560px;
-  border: 1px solid #eee;
   box-shadow: 5px 5px 30px 10px #f0f0f0;
   /* padding: 20px 30px; */
   margin: 20px auto;
@@ -72,11 +74,13 @@ export default {
   border:none !important;
 }
 #author {
-  font-size: 16px;
+  font-size: 1.4em;
 }
 #title .title {
   display: block;
   margin: 5px 0;
+  border-left: 5px solid rgb(175, 50, 60);
+  padding-left: 1em;
 }
 #title .title a {
   float: right;

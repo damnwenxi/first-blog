@@ -1,6 +1,6 @@
 <template>
   <div id="admin">
-    <h1>后台管理</h1>
+    <Divider orientation="right">后台管理</Divider>
     <Table
       @on-selection-change="selectChange"
       ref="selection"
@@ -48,7 +48,7 @@ export default {
         },
         {
           width: 200,
-          title: "Action",
+          title: "操作",
           key: "action",
           align: "center",
           render: (h, params) => {
@@ -83,7 +83,8 @@ export default {
                   },
                   on: {
                     click: () => {
-                      console.log(params.row._id);
+                      // console.log(params.row._id);
+                      this.$router.push({name:'detail',query:{id:params.row._id}});
                     }
                   }
                 },
@@ -147,21 +148,31 @@ export default {
         headers: {
           Authorization: localStorage.getItem("token")
         },
-        data:{
-            idList:this.delStr
+        data: {
+          idList: this.delStr
         }
       }).then(res => {
-          if(res.status == 200){
-              this.$Notice.success({
-                    title: '删除成功',
-                    desc: res.data.msg
-               });
-          }else{
-              this.$Notice.error({
-                    title: '删除失败',
-                    desc: res.data.msg
-               });
-          }
+        if (res.status == 200) {
+          this.$Notice.success({
+            title: "删除成功",
+            desc: res.data.msg
+          });
+
+          this.axios({
+            method: "get",
+            url: "/blogs/all",
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
+          }).then(response => {
+            this.blogs = response.data.blogs;
+          });
+        } else {
+          this.$Notice.error({
+            title: "删除失败",
+            desc: res.data.msg
+          });
+        }
       });
     }
   }

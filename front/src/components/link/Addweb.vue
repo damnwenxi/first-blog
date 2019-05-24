@@ -10,6 +10,9 @@
       <FormItem label="网址" prop="url">
         <Input v-model="formItem.url" placeholder="请输入网址..."></Input>
       </FormItem>
+      <FormItem label="网站icon" prop="cover">
+        <Input v-model="formItem.cover" placeholder="将网站的icon拷贝至这里"></Input>
+      </FormItem>
       <FormItem label="分类" prop="category">
         <Select v-model="formItem.category">
           <Option value="beijing">New York</Option>
@@ -25,6 +28,15 @@
       <FormItem label="描述" prop="description">
         <Input
           v-model="formItem.description"
+          type="textarea"
+          :autosize="{minRows: 2,maxRows: 5}"
+          placeholder="Enter something..."
+        ></Input>
+      </FormItem>
+
+      <FormItem label="信息">
+        <Input
+          v-model="formItem.note"
           type="textarea"
           :autosize="{minRows: 2,maxRows: 5}"
           placeholder="Enter something..."
@@ -47,7 +59,9 @@ export default {
         url: "",
         category: "",
         email: "",
-        description: ""
+        description: "",
+        cover: "",
+        note: ""
       },
 
       ruleValidate: {
@@ -71,14 +85,6 @@ export default {
             message: "The category cannot be empty",
             trigger: "blur"
           }
-        ],
-        email: [
-          {
-            required: false,
-            message: "Mailbox cannot be empty",
-            trigger: "blur"
-          },
-          { type: "email", message: "Incorrect email format", trigger: "blur" }
         ],
         description: [
           {

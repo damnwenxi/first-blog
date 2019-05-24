@@ -7,6 +7,8 @@ import Article from '../components/blog/Article'
 import Addblog from '../components/blog/Addblog'
 import Addweb from '../components/link/Addweb'
 import Admin from '../components/user/Admin'
+import Edit from '../components/blog/Editblog'
+import About from '../components/user/Aboutme'
 
 
 Vue.use(Router)
@@ -48,6 +50,16 @@ export default new Router({
       path: '/admin',
       name: 'admin',
       component: Admin
+    },
+    {
+      path: '/edit',
+      name: 'edit',
+      component: Edit
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
     }
   ] 
 })

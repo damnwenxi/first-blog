@@ -19,9 +19,13 @@ const WebsiteSchema = new Schema({
         type:String,
         default:''
     },
+    note:{
+        type:String,
+        default:''
+    },
     show:{
         type:Boolean,
-        default:false
+        default:true
     },
     view:{
         type:Number,
