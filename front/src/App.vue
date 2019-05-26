@@ -51,16 +51,15 @@ label{
   margin-bottom: 0 !important;
 }
 a{
-  color: #2c3e50;
+  color: #2c3e50 !important;
 }
 a:hover{
-  color: rgb(175, 50, 60);
+  color: rgb(175, 50, 60) !important;
 }
 html,body{
   width: 100%;
   height: 100%;
-  font-size: 10px;
-
+  font-size: 10px !important;
 }
 #btn1 {
   background-color: rgb(175, 50, 60);

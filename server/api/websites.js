@@ -129,4 +129,53 @@ router.get('/search', async ctx => {
     }
 });
 
+/**
+ * @desc 点赞接口
+ * @port /websites/vote
+ * @query id
+ * @access public
+ */
+router.get('/vote',async ctx=>{
+    try{
+        const id = ctx.query.id;
+        await Website.updateOne({"_id":id},{$inc:{"likes":1}}).then(res=>{
+            if(res.nModified == 1){
+                ctx.status = 200;
+                ctx.body = {msg:"唔该晒！"};
+            }else{
+                ctx.status = 500;
+                ctx.body = {msg:"服务器出错"};
+            }
+        });
+    }catch(e){
+        console.log(e);
+        ctx.status = 500;
+        ctx.body = {msg:"服务器出错"};
+    }
+});
+
+/**
+ * @desc 访问接口
+ * @port /websites/view
+ * @query id
+ * @access public
+ */
+router.get('/view',async ctx=>{
+    try{
+        const id = ctx.query.id;
+        await Website.updateOne({"_id":id},{$inc:{"view":1}}).then(res=>{
+            if(res.nModified == 1){
+                ctx.status = 200;
+                ctx.body = {msg:"success"};
+            }else{
+                ctx.status = 500;
+                ctx.body = {msg:"服务器出错"};
+            }
+        });
+    }catch(e){
+        ctx.status = 500;
+        ctx.body = {msg:"服务器出错"};
+    }
+})
+
 module.exports = router.routes();

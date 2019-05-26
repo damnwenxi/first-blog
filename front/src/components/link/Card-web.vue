@@ -2,7 +2,7 @@
   <div id="tem" style="background:#eee;">
     <Card class="card" :bordered="false">
       <h4 slot="title">
-        <a :href="website.url" target="_blank">
+        <a @click="viewIt(website._id)" :href="website.url" target="_blank">
           <Icon type="md-link"/>
           {{website.title}}
         </a>
@@ -13,7 +13,7 @@
       <img :src="website.cover" :alt="website.title">
       <p>{{website.info}}</p>
       <p class="link">
-        <a :href="website.url" target="_blank">{{website.url}}</a>
+        <a @click="viewIt(website._id)" :href="website.url" target="_blank">{{website.url}}</a>
       </p>
       <div id="icons">
         <div style="float:left">
@@ -25,14 +25,15 @@
 
         <div class="vote" style="float:right">
           <span>
-            <Icon type="md-eye"/>
+            <Icon type="md-eye" :class="{voted:viewd}"/>
             {{website.view}}
           </span>
-          <span>
-            <Icon type="ios-bookmark"/>
+          <span @click="voteIt(website._id)">
+            <Icon :class="{voted:liked}" type="md-heart" />
             {{website.likes}}
           </span>
         </div>
+
       </div>
     </Card>
   </div>
@@ -42,8 +43,29 @@ export default {
   props: ["website"],
   data() {
     return {
-      time: this.website.c_date
+      time: this.website.c_date,
+      viewd: false,
+      liked: false
     };
+  },
+  methods:{
+    voteIt(id){
+      this.axios.get('/websites/vote?id='+id).then(res=>{
+        if(res.status == 200){
+          this.$Message.success(res.data.msg);
+          this.website.likes +=1;
+          this.liked = true;
+        }
+      }); 
+    },
+    viewIt(id){
+      this.axios.get('/websites/view?id='+id).then(res=>{
+        if(res.status == 200){
+          this.website.view +=1;
+          this.viewd = true;
+        }
+      }); 
+    }
   }
 };
 </script>
@@ -54,6 +76,9 @@ export default {
     bottom: 4em;
     left: 0;
     right: 0;
+}
+.voted{
+  color: #FF6B6B !important;
 }
 h4 i:hover{
     cursor: pointer;
