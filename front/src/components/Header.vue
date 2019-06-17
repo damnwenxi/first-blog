@@ -3,8 +3,15 @@
     <div class="container">
       <div class="nav_left">
         <router-link to="/">
-        <img src="../assets/logo2.png" style="verticle-align:middle ;width:50px;display:inline-block" alt="">Solotor</router-link>
+          <img
+            src="../assets/logo2.png"
+            style="verticle-align:middle ;width:50px;display:inline-block"
+            alt
+          >Solotor
+        </router-link>
       </div>
+
+      <!-- 大屏设备 -->
       <div class="nav_right">
         <ul class="menu">
           <li class="menu_item">
@@ -22,13 +29,20 @@
           <li class="menu_item" v-if="user">
             <Dropdown>
               <a href="javascript:void(0)">
-                <Icon type="ios-hammer-outline"/>{{user}}
+                <Icon type="ios-hammer-outline"/>
+                {{user}}
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem> <router-link :to="{name:'add'}">写博客</router-link> </DropdownItem>
-                <DropdownItem> <router-link :to="{name:'admin'}">后台管理</router-link> </DropdownItem>
+                <DropdownItem>
+                  <router-link :to="{name:'add'}">写博客</router-link>
+                </DropdownItem>
+                <DropdownItem>
+                  <router-link :to="{name:'admin'}">后台管理</router-link>
+                </DropdownItem>
                 <DropdownItem>用户授权</DropdownItem>
-                <DropdownItem> <span @click="logout">退了</span></DropdownItem>
+                <DropdownItem>
+                  <span @click="logout">退了</span>
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </li>
@@ -39,8 +53,12 @@
                 <Icon type="ios-infinite-outline"/>关于
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem><router-link to="/about">我的信息</router-link></DropdownItem>
-                <DropdownItem> <router-link to="/collection">作品集</router-link></DropdownItem>
+                <DropdownItem>
+                  <router-link to="/about">我的信息</router-link>
+                </DropdownItem>
+                <DropdownItem>
+                  <router-link to="/collection">作品集</router-link>
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </li>
@@ -56,31 +74,62 @@
               <Icon type="ios-search"/>Search
             </span>
           </li>
-
         </ul>
+      </div>
+
+      <!-- 移动端 -->
+      <div style="float:right;display:none" class="phone-nav">
+        <Menu mode="horizontal">
+          <Submenu name="3">
+            <template slot="title">
+              <Icon type="ios-cog"/>操作
+            </template>
+            <MenuGroup title="进入">
+              <MenuItem name="3-1">
+                <router-link to="/blogs">
+                  <Icon type="md-list-box"/>博客总览
+                </router-link>
+              </MenuItem>
+              <MenuItem name="3-4">
+                <router-link to="/">
+                  <Icon type="md-bookmark"/>书签
+                </router-link>
+              </MenuItem>
+              <MenuItem name="3-2">
+                <router-link to="/collection">
+                  <Icon type="md-albums"/>作品集
+                </router-link>
+              </MenuItem>
+              <MenuItem name="3-3">
+                <router-link to="/about">
+                  <Icon type="md-information-circle"/>我的信息
+                </router-link>
+              </MenuItem>
+            </MenuGroup>
+          </Submenu>
+        </Menu>
       </div>
     </div>
   </header>
 </template>
 <script>
 export default {
-  data(){
-    return{
-      user:''
-    }
+  data() {
+    return {
+      user: ""
+    };
   },
-  inject:['reload'],
-  mounted(){
-    this.user = sessionStorage.user;
+  inject: ["reload"],
+  mounted() {
+    this.user = localStorage.user;
   },
-  methods:{
-    logout(){
-      sessionStorage.clear();
+  methods: {
+    logout() {
+      localStorage.clear();
       this.reload();
     }
   }
 };
-
 </script>
 
 <style scoped>

@@ -46,7 +46,7 @@ export default {
   created() {
     this.axios.get("/blogs?id=" + this.$route.query.id).then(response => {
       this.blog = response.data;
-      console.log(response.data);
+      // console.log(response.data);
       var time = response.data.last_change_time;
       var date = new Date(time).toLocaleString();
       this.time = date;

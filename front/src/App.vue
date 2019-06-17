@@ -54,7 +54,7 @@ a {
   color: #2c3e50;
 }
 a:hover {
-  color: rgb(175, 50, 60) !important;
+  color: rgb(175, 50, 60);
 }
 html,
 body {
@@ -90,5 +90,39 @@ body {
 /* 清除浮动 */
 .clearfix {
   clear: both;
+}
+
+/* 移动端适配 媒体查询 */
+@media (max-width: 540px) {
+  .nav_right {
+    display: none;
+  }
+
+  #website .tip {
+    display: none;
+  }
+
+  #website .search {
+    width: 100% !important;
+  }
+
+  #btn2 {
+    width: 100% !important;
+    margin: 5px 0 !important;
+  }
+
+  .phone-nav {
+    height: 70px !important;
+    line-height: 70px !important;
+    display: block !important;
+  }
+
+  .ivu-menu-light {
+    background: none !important;
+  }
+  .ivu-menu-horizontal {
+    height: 70px !important;
+    line-height: 70px !important;
+  }
 }
 </style>

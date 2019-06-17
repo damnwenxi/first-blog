@@ -16,8 +16,8 @@ Vue.config.productionTip = false
 
 // axios 配置
 axios.defaults.timeout = 3000;
-// axios.defaults.baseURL = 'http://www.kkboom.cn:9001';
-axios.defaults.baseURL = 'http://localhost:8081';
+axios.defaults.baseURL = 'http://www.kkboom.cn:9001';
+// axios.defaults.baseURL = 'http://localhost:8081';
 
 // http request 拦截器
 axios.interceptors.request.use(

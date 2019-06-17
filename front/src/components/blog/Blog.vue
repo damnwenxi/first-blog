@@ -76,4 +76,8 @@ export default {
   margin-bottom: 50px;
   min-height: 100%;
 }
+
+#blog {
+  margin: 0 1em;
+}
 </style>

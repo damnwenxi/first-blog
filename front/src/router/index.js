@@ -15,7 +15,7 @@ import Error from '../components/Error'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -50,17 +50,26 @@ export default new Router({
     {
       path: '/blogs/add',
       name: 'add',
-      component: Addblog
+      component: Addblog,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/admin',
       name: 'admin',
-      component: Admin
+      component: Admin,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/edit',
       name: 'edit',
-      component: Edit
+      component: Edit,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/about',
@@ -74,3 +83,19 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (localStorage.getItem('token')) {
+      next();
+    } else {
+      next({ path: '/login' });
+    }
+  } else {
+    next();
+  }
+})
+
+export default router;
+
+

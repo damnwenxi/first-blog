@@ -90,7 +90,6 @@ export default {
   box-shadow: 3px 3px 15px #ddd;
   border-radius: 0;
   border: none;
-  max-height: 200px;
 }
 
 .card:hover {

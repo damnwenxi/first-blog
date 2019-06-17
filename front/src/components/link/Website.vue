@@ -2,12 +2,14 @@
   <div id="website">
     <div id="option" style="margin:1em">
       <Input
+        class="search"
         v-model="keywords"
         v-on:input="searchByWords"
         placeholder="搜索书签..."
         style="width: 300px"
       />
-      <Button id="btn1" type="primary" @click="searchByWords">搜索</Button>
+      <!-- <Button id="btn1" type="primary" @click="searchByWords">搜索</Button> -->
+
       <router-link to="/addweb">
         <Button id="btn2">添加书签</Button>
       </router-link>
@@ -99,8 +101,9 @@ export default {
   margin: 0 auto;
 }
 
-#btn1 {
+#btn2 {
   background-color: rgb(175, 50, 60);
+  color: #f9f7f4;
 }
 #btn1,
 #btn2 {

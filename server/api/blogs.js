@@ -207,7 +207,7 @@ router.post('/edit', passport.authenticate('jwt', { session: false }), async ctx
                 { _id: data._id },
                 { $set: blog }
             ).then(res => {
-                if(res.n == 1){
+                if (res.n == 1) {
                     ctx.status = 200;
                     ctx.body = { msg: 'edit blog success.', blog_back: res };
                 }
@@ -230,21 +230,21 @@ router.post('/edit', passport.authenticate('jwt', { session: false }), async ctx
  * @query id
  * @access public
  */
-router.get('/vote',async ctx=>{
-    try{
+router.get('/vote', async ctx => {
+    try {
         const id = ctx.query.id;
-        await Blog.updateOne({"_id":id},{$inc:{"likes":1}}).then(res=>{
-            if(res.nModified == 1){
+        await Blog.updateOne({ "_id": id }, { $inc: { "likes": 1 } }).then(res => {
+            if (res.nModified == 1) {
                 ctx.status = 200;
-                ctx.body = {msg:"唔该晒！"};
-            }else{
+                ctx.body = { msg: "唔该晒！" };
+            } else {
                 ctx.status = 500;
-                ctx.body = {msg:"服务器出错"};
+                ctx.body = { msg: "服务器出错" };
             }
         });
-    }catch(e){
+    } catch (e) {
         ctx.status = 500;
-        ctx.body = {msg:"服务器出错"};
+        ctx.body = { msg: "服务器出错" };
     }
 });
 
@@ -254,23 +254,45 @@ router.get('/vote',async ctx=>{
  * @query id
  * @access public
  */
-router.get('/view',async ctx=>{
-    try{
+router.get('/view', async ctx => {
+    try {
         const id = ctx.query.id;
-        await Blog.updateOne({"_id":id},{$inc:{"view":1}}).then(res=>{
+        await Blog.updateOne({ "_id": id }, { $inc: { "view": 1 } }).then(res => {
             console.log(res);
-            if(res.nModified == 1){
+            if (res.nModified == 1) {
                 ctx.status = 200;
-                ctx.body = {msg:"success"};
-            }else{
+                ctx.body = { msg: "success" };
+            } else {
                 ctx.status = 500;
-                ctx.body = {msg:"服务器出错"};
+                ctx.body = { msg: "服务器出错" };
             }
         });
-    }catch(e){
+    } catch (e) {
         ctx.status = 500;
-        ctx.body = {msg:"服务器出错"};
+        ctx.body = { msg: "服务器出错" };
     }
 })
+
+/**
+ *  @GET '/blog/search'
+ *  @关键字查找
+ */
+router.get('/search', async ctx => {
+    try {
+        const keywords = ctx.query.k.toString();
+        //正则匹配查询 
+        const searchResult = await Blog.find({ $or: [{ title: { $regex: keywords } }, { summary: { $regex: keywords } }, { content: { $regex: keywords } }] });
+        if (searchResult.length > 0) {
+            ctx.status = 200;
+            ctx.body = { msg: 'success', blogs: searchResult };
+        } else {
+            ctx.status = 200;
+            ctx.body = { msg: 'nothing to match.' }
+        }
+    } catch (e) {
+        ctx.status = 500;
+        ctx.body = { msg: 'not found.' };
+    }
+});
 
 module.exports = router.routes();

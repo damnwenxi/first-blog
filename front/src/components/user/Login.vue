@@ -35,7 +35,7 @@ export default {
             if (response.data.user) {
               this.$Message.success("登录成功!");
               // 将用户信息传递给bus事件总线，然后再传递到header
-              sessionStorage.user = response.data.user.name;
+              window.localStorage.setItem("user", response.data.user.name);
               // 登录成功保存token到localstorage
               window.localStorage.setItem("token", response.data.token);
               this.$router.push({ path: "/" });
