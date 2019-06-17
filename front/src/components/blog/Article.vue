@@ -40,18 +40,17 @@ export default {
   data() {
     return {
       blog: {},
-      time: ''
+      time: ""
     };
   },
   created() {
-    this.axios
-      .get("/blogs?id=" + this.$route.query.id)
-      .then(response => {
-        this.blog = response.data;
-        var time = response.data.last_change_time;
-        var date = new Date(time).toLocaleString();
-        this.time = date;
-      });
+    this.axios.get("/blogs?id=" + this.$route.query.id).then(response => {
+      this.blog = response.data;
+      console.log(response.data);
+      var time = response.data.last_change_time;
+      var date = new Date(time).toLocaleString();
+      this.time = date;
+    });
   }
 };
 </script>
@@ -70,8 +69,8 @@ export default {
   margin: 20px auto;
   width: 80%;
 }
-.v-note-wrapper .v-note-panel{
-  border:none !important;
+.v-note-wrapper .v-note-panel {
+  border: none !important;
 }
 #author {
   font-size: 1.4em;

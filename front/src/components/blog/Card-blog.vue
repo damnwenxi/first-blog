@@ -8,14 +8,14 @@
         </span>
 
         <span @click="viewIt(summary._id)">
-        <router-link id="title_a" :to="{name:'detail',query:{id:summary._id}}">{{summary.title}}</router-link>
+          <router-link id="title_a" :to="{name:'detail',query:{id:summary._id}}">{{summary.title}}</router-link>
         </span>
       </p>
       <p id="context">
         <span class="red">摘要：</span>
         {{summary.summary}}
         <span @click="viewIt(summary._id)">
-        <router-link class="red" :to="{name:'detail',query:{id:summary._id}}">...【详情】</router-link>
+          <router-link class="red" :to="{name:'detail',query:{id:summary._id}}">...【详情】</router-link>
         </span>
       </p>
       <div id="icons">
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     voteIt(id) {
-        console.log(this.summary);
+      console.log(this.summary);
       this.axios.get("/blogs/vote?id=" + id).then(res => {
         if (res.status == 200) {
           this.$Message.success(res.data.msg);
@@ -79,16 +79,28 @@ export default {
 <style scoped>
 #card-box {
   width: 100%;
-  margin: 25px auto;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
 
-.voted{
-  color: #FF6B6B !important;
+.voted {
+  color: #ff6b6b !important;
 }
 .card {
+  box-shadow: 3px 3px 15px #ddd;
+  border-radius: 0;
+  border: none;
   max-height: 200px;
-  border-radius: 10px;
 }
+
+.card:hover {
+  transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
+
 i {
   margin-top: -3px;
 }
@@ -131,9 +143,9 @@ i {
   margin-right: 32px;
   float: right;
 }
-.right i:hover{
-    cursor: pointer;
-    color: rgb(175, 50, 60);
+.right i:hover {
+  cursor: pointer;
+  color: rgb(175, 50, 60);
 }
 #icons .right span {
   margin-left: 20px;

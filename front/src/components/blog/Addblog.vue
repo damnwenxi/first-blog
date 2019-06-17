@@ -45,7 +45,7 @@
       <!-- 提交 -->
       <FormItem>
         <Button id="btn1" type="primary" @click="handleSubmit('formData')">立即发布</Button>
-        <Button id="btn2"  @click="handleReset" style="margin-left: 8px">重置</Button>
+        <Button id="btn2" @click="handleReset" style="margin-left: 8px">重置</Button>
       </FormItem>
     </Form>
   </div>
@@ -141,17 +141,20 @@ export default {
              * url 为上传后图片的url地址
              */
             // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-            for (var i=0; i<url_list.length; i++) {
+            for (var i = 0; i < url_list.length; i++) {
               // $vm.$img2Url 详情见本页末尾
               // console.log(url_list[i]);
-              this.$refs.md.$img2Url(parseInt(url_list[i].key), url_list[i].url);
+              this.$refs.md.$img2Url(
+                parseInt(url_list[i].key),
+                url_list[i].url
+              );
             }
             // 图片上传成功走这里，继续完成内容上传
             // 将自定义分类加入分类数组
             if (this.formData.category_add)
               this.formData.categories.push(this.formData.category_add);
             //内容上传
-            console.log("send");  
+            console.log("send");
             this.axios({
               method: "post",
               url: "/blogs/add",
@@ -162,11 +165,11 @@ export default {
             }).then(response => {
               console.log(response);
               this.$Notice.success({
-                    title: '博客发布成功'
-                });
+                title: "博客发布成功"
+              });
             });
           } else {
-            nodesc=res.data.msg;
+            nodesc = res.data.msg;
             this.$Notice.error({
               title: "图片上传失败",
               desc: nodesc ? "" : "图片上传失败，请检查服务器"
@@ -191,8 +194,6 @@ export default {
 
 
 <style scoped>
-
-
 #tip {
   text-align: left;
   margin: 0 0 10px;
@@ -219,5 +220,4 @@ export default {
 .container {
   max-width: 90%;
 }
-
 </style>

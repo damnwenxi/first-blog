@@ -9,13 +9,19 @@ import Addweb from '../components/link/Addweb'
 import Admin from '../components/user/Admin'
 import Edit from '../components/blog/Editblog'
 import About from '../components/user/Aboutme'
+import Collection from '../components/user/Collection'
+import Error from '../components/Error'
 
 
 Vue.use(Router)
 
 export default new Router({
-  // mode:history,
+  mode: 'history',
   routes: [
+    {
+      path: '*',
+      component: Error
+    },
     {
       path: '/',
       name: 'website',
@@ -60,6 +66,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/collection',
+      name: 'collection',
+      component: Collection
     }
-  ] 
+  ]
 })

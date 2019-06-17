@@ -40,7 +40,7 @@
               </a>
               <DropdownMenu slot="list">
                 <DropdownItem><router-link to="/about">我的信息</router-link></DropdownItem>
-                <DropdownItem>作品集</DropdownItem>
+                <DropdownItem> <router-link to="/collection">作品集</router-link></DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </li>
@@ -63,7 +63,6 @@
   </header>
 </template>
 <script>
-// import Vue from 'vue'
 export default {
   data(){
     return{
