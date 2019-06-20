@@ -26,7 +26,7 @@ router.post('/', async ctx => {
             if (md5(data.password) == user.password) {
                 // 密码对，生成token
                 const payload = { id: user.id, name: user.name, avatar: user.avatar };
-                const token = jwt.sign(payload, config.TOKEN_KEY, { expiresIn: 3600 });
+                const token = jwt.sign(payload, config.TOKEN_KEY, { expiresIn: 3600 * 24 });
                 // 设置session
                 ctx.status = 200;
                 ctx.body = { success: true, token: "Bearer " + token, user: user };
@@ -35,9 +35,9 @@ router.post('/', async ctx => {
                 ctx.body = { msg: '密码错误！' };
             }
         }
-    }catch (e) {
+    } catch (e) {
         ctx.status = 500;
-        ctx.body = {msg: "服务器错误"};
+        ctx.body = { msg: "服务器错误" };
     }
 });
 
