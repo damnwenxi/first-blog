@@ -8,6 +8,7 @@
       :columns="columns"
       :data="blogs"
     ></Table>
+
     <br>
     <Button @click="handleDelete()">删除所选</Button>
   </div>
@@ -65,7 +66,10 @@ export default {
                   },
                   on: {
                     click: () => {
-                      console.log(params.row);
+                      this.$router.push({
+                        name: "detail",
+                        query: { id: params.row._id }
+                      });
                     }
                   }
                 },
@@ -84,7 +88,10 @@ export default {
                   on: {
                     click: () => {
                       // console.log(params.row._id);
-                      this.$router.push({name:'detail',query:{id:params.row._id}});
+                      this.$router.push({
+                        name: "edit",
+                        query: { id: params.row._id }
+                      });
                     }
                   }
                 },
@@ -99,7 +106,17 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.handleDelete(params.row._id);
+                      this.$Modal.confirm({
+                        title: "删除博客",
+                        content:
+                          "<p>确定要删除该条博客吗？该操作不可恢复。</p>",
+                        onOk: () => {
+                          this.handleDelete(params.row._id);
+                        },
+                        onCancel: () => {
+                          this.$Message.info("取消删除");
+                        }
+                      });
                     }
                   }
                 },

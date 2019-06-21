@@ -45,7 +45,7 @@
 </template>
 <script>
 export default {
-  props: ["website"],
+  props: ["website", "card_img"],
   data() {
     return {
       time: this.website.c_date,

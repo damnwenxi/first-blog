@@ -27,20 +27,10 @@
             v-model="formData.summary"
           ></Input>
         </FormItem>
-        <label for>分类</label>
+        <label for>标签</label>
       </div>
-      <FormItem prop="interest">
-        <CheckboxGroup v-model="formData.categories">
-          <Checkbox label="JavaScript"></Checkbox>
-          <Checkbox label="Vue"></Checkbox>
-          <Checkbox label="React"></Checkbox>
-          <Checkbox label="CSS"></Checkbox>
-          <Checkbox label="HTML"></Checkbox>
-          <Checkbox label="Andriod"></Checkbox>
-          <Checkbox label="JAVA"></Checkbox>
-          <Checkbox label="乱八七糟"></Checkbox>
-          <Input type="text" placeholder="在此输入其他分类" v-model="formData.category_add"></Input>
-        </CheckboxGroup>
+      <FormItem>
+        <Input type="text" placeholder="在此输入标签，以逗号隔开" v-model="formData.category"></Input>
       </FormItem>
       <!-- 提交 -->
       <FormItem>
@@ -134,7 +124,6 @@ export default {
         }).then(res => {
           if (res.status == 200) {
             var url_list = res.data.urls;
-            console.log(url_list);
             /**
              * 例如：返回数据为 res = [[pos, url], [pos, url]...]
              * pos 为原图片标志（0）
@@ -150,11 +139,7 @@ export default {
               );
             }
             // 图片上传成功走这里，继续完成内容上传
-            // 将自定义分类加入分类数组
-            if (this.formData.category_add)
-              this.formData.categories.push(this.formData.category_add);
             //内容上传
-            console.log("send");
             this.axios({
               method: "post",
               url: "/blogs/add",
@@ -163,7 +148,6 @@ export default {
                 Authorization: localStorage.getItem("token")
               }
             }).then(response => {
-              console.log(response);
               this.$Notice.success({
                 title: "博客发布成功"
               });

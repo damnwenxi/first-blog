@@ -54,7 +54,8 @@ export default {
       webForRow: [],
       keywords: "",
       tempRow: [],
-      show: false
+      show: false,
+      card_imgs: []
     };
   },
   components: { Cardweb },
@@ -85,12 +86,20 @@ export default {
     }
   },
   created() {
+    // 获取web信息
     this.axios.get("/websites").then(res => {
       const webs = res.data.webs;
       this.webForRow = webs;
       // 设置一个临时变量用于存储第一次获取的值，避免每次输入关键词为空的时候发送无效请求
       this.tempRow = webs;
     });
+
+    // // 获取图片
+    // this.axios
+    //   .get("http://kkboom.cn:9876/images?num=" + this.webForRow.length)
+    //   .then(res => {
+    //     this.card_imgs = res.data.img_list;
+    //   });
   }
 };
 </script>

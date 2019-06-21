@@ -58,7 +58,6 @@ export default {
 #title {
   max-height: 200px;
   box-shadow: 5px 5px 30px 10px #f0f0f0;
-  width: 80%;
   padding: 20px;
   margin: 0 auto;
 }
@@ -67,7 +66,6 @@ export default {
   box-shadow: 5px 5px 30px 10px #f0f0f0;
   /* padding: 20px 30px; */
   margin: 20px auto;
-  width: 80%;
 }
 .v-note-wrapper .v-note-panel {
   border: none !important;

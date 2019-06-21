@@ -186,14 +186,14 @@
             <a
               class="enter-tag"
               href="http://images.kkboom.cn"
-              @mouseenter="show3 = true"
-              @mouseleave="show3 = false"
+              @mouseenter="show8 = true"
+              @mouseleave="show8 = false"
               target="_blank"
             >
               <img src="../../assets/images.jpg" alt>
               <transition name="down">
                 <p
-                  v-if="show3"
+                  v-if="show8"
                 >利用nodeJS爬虫定时爬取pixabay网站上的流行图片。提供了API支持，可以快速的批量获取指定数量的高清图片或缩略图，省去你挑选图片的时间。</p>
               </transition>
 
@@ -424,6 +424,10 @@ i {
 
 h4 a {
   color: #444;
+}
+
+h4 {
+  margin: 1em;
 }
 .collection-card p {
   font-size: 1.4em;

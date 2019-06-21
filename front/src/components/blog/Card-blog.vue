@@ -11,6 +11,7 @@
           <router-link id="title_a" :to="{name:'detail',query:{id:summary._id}}">{{summary.title}}</router-link>
         </span>
       </p>
+
       <p id="context">
         <span class="red">摘要：</span>
         {{summary.summary}}
@@ -18,6 +19,7 @@
           <router-link class="red" :to="{name:'detail',query:{id:summary._id}}">...【详情】</router-link>
         </span>
       </p>
+
       <div id="icons">
         <div class="left">
           <span>
@@ -39,6 +41,14 @@
           </span>
         </div>
       </div>
+
+      <!-- 清除浮动 -->
+      <div style="clear:left;"></div>
+
+      <!-- 标签 -->
+      <p>
+        <Tag v-for="tag in tags" :key="tag" :color="setColor(tag)">{{tag}}</Tag>
+      </p>
     </Card>
   </div>
 </template>
@@ -50,10 +60,53 @@ export default {
       blog: this.summary,
       time: this.summary.c_date,
       viewd: false,
-      liked: false
+      liked: false,
+      typeOfTags: [
+        "default",
+        "red",
+        "volcano",
+        "orange",
+        "gold",
+        "green",
+        "cyan",
+        "blue",
+        "geekblue",
+        "purple"
+      ]
     };
   },
+  computed: {
+    tags: function() {
+      return this.blog.category.split(/[,，]/);
+    }
+  },
+  // created() {
+  //   console.log(this.summary);
+  // },
   methods: {
+    // 设置标签颜色
+    setColor: function(tag) {
+      switch (tag) {
+        case "VUE":
+          return "green";
+        case "乱八七糟":
+          return "default";
+        case "JavaScript":
+          return "red";
+        case "Java":
+          return "gold";
+        case "Python":
+          return "cyan";
+        case "CSS":
+          return "geekblue";
+        case "HTML":
+          return "orange";
+        case "Node.JS":
+          return "volcano";
+        default:
+          return this.typeOfTags[parseInt(Math.random() * 10)];
+      }
+    },
     voteIt(id) {
       console.log(this.summary);
       this.axios.get("/blogs/vote?id=" + id).then(res => {
@@ -107,7 +160,6 @@ i {
   text-align: justify;
 }
 #context {
-  margin-bottom: 36px;
   display: block;
 }
 #context .red {
@@ -128,10 +180,9 @@ i {
 }
 
 #icons {
+  margin: 1em 0;
   width: 100%;
   display: block;
-  position: absolute;
-  bottom: 10px;
 }
 #icons .left {
   float: left;
@@ -139,7 +190,7 @@ i {
 }
 
 #icons .right {
-  margin-right: 32px;
+  /* margin-right: 32px; */
   float: right;
 }
 .right i:hover {
