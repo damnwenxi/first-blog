@@ -91,7 +91,7 @@ router.post('/add', passport.authenticate('jwt', { session: false }), async ctx 
                 author: ctx.state.user.name,
                 summary: data.summary || '',
                 title: data.title || 'No title',
-                category: data.categories.join(',') || 'other',
+                category: data.category || 'other',
                 content: data.content || " ",
                 cover: data.cover || ''
             };
@@ -190,13 +190,13 @@ router.post('/edit', passport.authenticate('jwt', { session: false }), async ctx
         // console.log(admin);
         if (admin.length > 0) {
             const data = ctx.request.body;
-            console.log(data);
+            // console.log(data.categories);
             // 验证数据然后添加到数据库
             const blog = {
                 "author": ctx.state.user.name,
                 "summary": data.summary || '',
                 "title": data.title || 'No title',
-                "category": data.categories.join(',') || '乱八七糟',
+                "category": data.category || '乱八七糟',
                 "content": data.content || 'air',
                 "cover": data.cover || '',
                 "last_change_time": new Date()
