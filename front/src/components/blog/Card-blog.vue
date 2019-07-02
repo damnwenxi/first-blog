@@ -3,7 +3,7 @@
     <Card class="card" :bordered="false">
       <p id="title" slot="title">
         <span id="author">
-          <Icon type="ios-person-add"/>
+          <Icon type="ios-person-add" />
           {{summary.author}}
         </span>
 
@@ -23,21 +23,21 @@
       <div id="icons">
         <div class="left">
           <span>
-            <Icon type="md-calendar"/>
-            <Time :time="time" type="datetime"/>
+            <Icon type="md-calendar" />
+            <Time :time="time" type="datetime" />
           </span>
         </div>
         <div class="right">
           <span>
-            <Icon :class="{voted:viewd}" type="md-eye"/>
+            <Icon :class="{voted:viewd}" type="md-eye" />
             {{summary.view}}
           </span>
           <span>
-            <Icon :class="{voted:liked}" @click="voteIt(summary._id)" type="ios-thumbs-up"/>
+            <Icon :class="{voted:liked}" @click="voteIt(summary._id)" type="ios-thumbs-up" />
             {{summary.likes}}
           </span>
           <span>
-            <Icon type="ios-text"/>0
+            <Icon type="ios-text" />0
           </span>
         </div>
       </div>
@@ -108,7 +108,6 @@ export default {
       }
     },
     voteIt(id) {
-      console.log(this.summary);
       this.axios.get("/blogs/vote?id=" + id).then(res => {
         if (res.status == 200) {
           this.$Message.success(res.data.msg);

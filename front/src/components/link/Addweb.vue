@@ -1,9 +1,15 @@
 <template>
   <div class="add">
-    <h2>Add Bookmark</h2>
-          <Divider dashed/>
+    <h2 style="margin-left:1em">添加书签</h2>
+    <Divider dashed />
 
-    <Form ref="formItem" :model="formItem" :label-width="80" :rules="ruleValidate">
+    <Form
+      ref="formItem"
+      :model="formItem"
+      :label-width="50"
+      label-position="left"
+      :rules="ruleValidate"
+    >
       <FormItem label="名称" prop="title">
         <Input v-model="formItem.title" placeholder="请输入网站名称..."></Input>
       </FormItem>
@@ -30,7 +36,7 @@
           v-model="formItem.description"
           type="textarea"
           :autosize="{minRows: 2,maxRows: 5}"
-          placeholder="Enter something..."
+          placeholder="描述信息"
         ></Input>
       </FormItem>
 
@@ -39,7 +45,7 @@
           v-model="formItem.note"
           type="textarea"
           :autosize="{minRows: 2,maxRows: 5}"
-          placeholder="Enter something..."
+          placeholder="备注信息"
         ></Input>
       </FormItem>
 
@@ -68,34 +74,32 @@ export default {
         title: [
           {
             required: true,
-            message: "The title cannot be empty",
+            message: "标题不得为空",
             trigger: "blur"
           }
         ],
         url: [
           {
             required: true,
-            message: "The url cannot be empty",
+            message: "网址不得为空",
             trigger: "blur"
           }
         ],
         category: [
           {
             required: true,
-            message: "The category cannot be empty",
+            message: "请选择分类",
             trigger: "blur"
           }
         ],
         description: [
           {
-            required: true,
-            message: "The description cannot be empty",
-            trigger: "blur"
+            required: false
           },
           {
             type: "string",
             max: 40,
-            message: "Introduce no less than 10 words",
+            message: "简介不超过40个字",
             trigger: "blur"
           }
         ]
@@ -111,9 +115,9 @@ export default {
             url: "/websites/add",
             data: this.formItem
           }).then(response => {
-            if(response.status==200){
+            if (response.status == 200) {
               this.$Message.success("添加书签成功!");
-            }else{
+            } else {
               this.$Message.error(res.data.msg);
             }
           });
@@ -137,8 +141,9 @@ export default {
 
 <style scoped>
 .add {
+  padding: 1em;
   margin: 100px auto;
-  width: 60%;
+  max-width: 500px;
 }
 </style>
 

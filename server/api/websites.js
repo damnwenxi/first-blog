@@ -6,7 +6,7 @@ const Website = require('../models/Website');
 const { DEFAULT_WEBSITE_ICON } = require('../config');
 
 /**
- *  @GET '/websites/show'
+ *  @GET '/websites'
  *  @获取公开websites数据接口，接口是公开的
  */
 router.get('/', async ctx => {
@@ -84,7 +84,7 @@ router.get('/hide', passport.authenticate('jwt', { session: false }), async ctx 
 
 /**
 *  @POST '/websites/add'
-*  @添加web数据接口，接口是私密的，需要token验证
+*  @添加web数据接口，接口是公开的，需要token验证
 */
 router.post('/add', async ctx => {
     try {
@@ -124,23 +124,30 @@ router.post('/add', async ctx => {
  *  @管理员删除website
  *  @接口是私密的
  */
-router.get('/delete', passport.authenticate('jwt', { session: false }), async ctx => {
+router.post('/delete', passport.authenticate('jwt', { session: false }), async ctx => {
     try {
         const admin = await Admin.find({ _id: ctx.state.user.id });
+        const idList = ctx.request.body.idList.split(',');
         if (admin.length > 0) {
-            const id = ctx.query.id;
-            console.log(id);
             // 删除操作
+            let delCount = 0;
+            for (var i = 0; i < idList.length; i++) {
+                await Website.deleteOne({ _id: idList[i] }).then((del) => {
+                    if (del.ok) {
+                        delCount = delCount + 1;
+                    }
+                });
+            }
             ctx.status = 200;
-            ctx.body = { msg: 'get websites data from table websites.' };
+            ctx.body = { msg: `成功删除${delCount}条记录` };
         } else {
             ctx.status = 400;
-            ctx.body = { msg: '你不是管理员用户。' };
+            ctx.body = { msg: '身份验证失败' };
         }
     } catch (e) {
         console.log(e);
-        ctx.status = 404;
-        ctx.body = { msg: 'not found.' };
+        ctx.status = 500;
+        ctx.body = { msg: '崩了' };
     }
 });
 

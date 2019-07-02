@@ -2,7 +2,7 @@
   <div id="app">
     <Header v-if="isRouterAlive" :key="$route.fullPath"></Header>
     <div class="center">
-      <router-view v-if="isRouterAlive"/>
+      <router-view v-if="isRouterAlive" />
     </div>
     <Footer></Footer>
   </div>
@@ -32,13 +32,35 @@ export default {
         this.isRouterAlive = true;
       });
     }
+  },
+  created() {
+    // 在线时间更新
+    this.axios
+      .get({
+        method: "get",
+        url: "/login/valid",
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      })
+      .then(response => {
+        if (response.data.user) {
+          this.$Message.success("登录成功!");
+          // 将用户信息传递给bus事件总线，然后再传递到header
+          window.localStorage.setItem("user", response.data.user.name);
+          // 登录成功保存token到localstorage
+          window.localStorage.setItem("token", response.data.token);
+          this.$router.push({ path: "/" });
+        } else {
+          this.$Message.error(response.data.msg);
+        }
+      });
   }
 };
 </script>
 
 <style>
 #app {
-  height: 100%;
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
@@ -59,7 +81,6 @@ a:hover {
 html,
 body {
   width: 100%;
-  height: 100%;
   font-size: 10px !important;
 }
 #btn1 {

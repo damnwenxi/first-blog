@@ -44,19 +44,19 @@ router.post('/', async ctx => {
 
 /**
  *  @GET '/login/valid'
- *  @admin认证，接口是私密的，需要token验证
+ *  @在线时间更新认证，接口是私密的，需要token验证
  */
 router.get('/valid', passport.authenticate('jwt', { session: false }), async ctx => {
+    console.log("asd");
     try {
         const admin = await Admin.find({ _id: ctx.state.user.id });
-        // console.log(admin);
+        console.log(admin);
         ctx.status = 200;
         ctx.body = admin[0];
     } catch (e) {
         ctx.status = 500;
         ctx.body = { msg: '崩了！' };
     };
-
 });
 
 module.exports = router.routes();

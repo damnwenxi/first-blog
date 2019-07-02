@@ -10,6 +10,7 @@ const Admin = require('../models/Admin');
  */
 router.get('/', async ctx => {
     const id = ctx.query.id;
+    const page = parseInt(ctx.query.page);
     // 如果有id，获取单条blog
     if (id) {
         try {
@@ -17,17 +18,19 @@ router.get('/', async ctx => {
             ctx.status = 200;
             ctx.body = blog;
         } catch (e) {
-            console.log(e);
-            ctx.status = 500;
+            // console.log(e);
+            ctx.status = 200;
             ctx.body = { msg: "你要查看的blog不存在或已被删除" };
         }
         // 没有id则是普通用户获取可展示的blog
     } else {
         try {
-            const blogs = await Blog.find({}, { 'content': 0 }).sort({ _id: -1 });
+            const blogs = await Blog.find({}, { 'content': 0 }).sort({ _id: -1 }).limit(10).skip(page * 10 - 10);
+            const count = await Blog.find().countDocuments();
             ctx.status = 200;
-            ctx.body = blogs;
+            ctx.body = { blogs, count };
         } catch (e) {
+            console.log(e);
             ctx.status = 500;
             ctx.body = { msg: "数据库获取数据失败。" };
         }
@@ -43,7 +46,7 @@ router.get('/all', passport.authenticate('jwt', { session: false }), async ctx =
     try {
         const admin = await Admin.find({ _id: ctx.state.user.id });
         if (admin.length > 0) {
-            await Blog.find().limit(20).then(res => {
+            await Blog.find({}, { 'content': 0 }).limit(10).then(res => {
                 ctx.status = 200;
                 ctx.body = { msg: 'success.', blogs: res };
             });

@@ -1,14 +1,14 @@
 <template>
-  <Form id="login" :label-width="80">
-    <FormItem label="E-mail">
-      <Input v-model="mail" placeholder="Enter your e-mail"></Input>
+  <Form id="login">
+    <FormItem label="邮箱">
+      <Input v-model="mail" placeholder="请输入邮箱..."></Input>
     </FormItem>
-    <FormItem label="Password" prop="password">
-      <Input type="password" v-model="password" placeholder="Enter your password"></Input>
+    <FormItem label="密码" prop="password">
+      <Input type="password" v-model="password" placeholder="请输入密码..."></Input>
     </FormItem>
     <FormItem>
-      <Button type="primary" @click="handleSubmit">Submit</Button>
-      <Button @click="handleReset" style="margin-left: 8px">Reset</Button>
+      <Button type="primary" @click="handleSubmit">登录</Button>
+      <Button @click="handleReset" style="margin-left: 8px">重置</Button>
     </FormItem>
   </Form>
 </template>
@@ -56,8 +56,13 @@ export default {
 
 <style>
 #login {
-  max-width: 50%;
-  margin: 200px auto;
+  max-width: 360px;
+  padding: 1em;
+  margin: 100px auto;
+  top: 200px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 </style>
 

@@ -7,7 +7,7 @@
             src="../assets/logo2.png"
             style="verticle-align:middle ;width:50px;display:inline-block"
             alt
-          >Solotor
+          />Solotor
         </router-link>
       </div>
 
@@ -16,21 +16,22 @@
         <ul class="menu">
           <li class="menu_item">
             <router-link to="/">
-              <Icon type="ios-bookmark-outline"/>共享书签
+              <Icon type="ios-bookmark-outline" />共享书签
             </router-link>
           </li>
 
           <li class="menu_item">
             <router-link to="/blogs">
-              <Icon type="ios-list-box-outline"/>博客总览
+              <Icon type="ios-list-box-outline" />博客总览
             </router-link>
           </li>
 
           <li class="menu_item" v-if="user">
             <Dropdown>
               <a href="javascript:void(0)">
-                <Icon type="ios-hammer-outline"/>
+                <Icon type="ios-hammer-outline" />
                 {{user}}
+                <Icon type="ios-arrow-down"></Icon>
               </a>
               <DropdownMenu slot="list">
                 <DropdownItem>
@@ -50,7 +51,8 @@
           <li class="menu_item">
             <Dropdown>
               <a href="javascript:void(0)">
-                <Icon type="ios-infinite-outline"/>关于
+                <Icon type="ios-infinite-outline" />关于
+                <Icon type="ios-arrow-down"></Icon>
               </a>
               <DropdownMenu slot="list">
                 <DropdownItem>
@@ -65,13 +67,13 @@
 
           <li class="menu_item" v-if="!user">
             <router-link to="/login">
-              <Icon type="ios-contact-outline"/>登录
+              <Icon type="ios-contact-outline" />登录
             </router-link>
           </li>
 
           <li class="menu_item">
             <span id="button">
-              <Icon type="ios-search"/>Search
+              <Icon type="ios-search" />Search
             </span>
           </li>
         </ul>
@@ -82,27 +84,27 @@
         <Menu mode="horizontal">
           <Submenu name="3">
             <template slot="title">
-              <Icon type="ios-cog"/>操作
+              <Icon type="ios-cog" />操作
             </template>
             <MenuGroup title="进入">
               <MenuItem name="3-1">
                 <router-link to="/blogs">
-                  <Icon type="md-list-box"/>博客总览
+                  <Icon type="md-list-box" />博客总览
                 </router-link>
               </MenuItem>
               <MenuItem name="3-4">
                 <router-link to="/">
-                  <Icon type="md-bookmark"/>书签
+                  <Icon type="md-bookmark" />书签
                 </router-link>
               </MenuItem>
               <MenuItem name="3-2">
                 <router-link to="/collection">
-                  <Icon type="md-albums"/>作品集
+                  <Icon type="md-albums" />作品集
                 </router-link>
               </MenuItem>
               <MenuItem name="3-3">
                 <router-link to="/about">
-                  <Icon type="md-information-circle"/>我的信息
+                  <Icon type="md-information-circle" />我的信息
                 </router-link>
               </MenuItem>
             </MenuGroup>
