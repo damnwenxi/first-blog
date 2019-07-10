@@ -35,26 +35,6 @@ export default {
   },
   created() {
     // 在线时间更新
-    this.axios
-      .get({
-        method: "get",
-        url: "/login/valid",
-        headers: {
-          Authorization: localStorage.getItem("token")
-        }
-      })
-      .then(response => {
-        if (response.data.user) {
-          this.$Message.success("登录成功!");
-          // 将用户信息传递给bus事件总线，然后再传递到header
-          window.localStorage.setItem("user", response.data.user.name);
-          // 登录成功保存token到localstorage
-          window.localStorage.setItem("token", response.data.token);
-          this.$router.push({ path: "/" });
-        } else {
-          this.$Message.error(response.data.msg);
-        }
-      });
   }
 };
 </script>

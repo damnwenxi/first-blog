@@ -11,6 +11,8 @@ import Edit from '../components/blog/Editblog'
 import About from '../components/user/Aboutme'
 import Collection from '../components/user/Collection'
 import Error from '../components/Error'
+import Axios from '_axios@0.18.1@axios';
+import { resolve } from 'path';
 
 
 Vue.use(Router)
@@ -86,11 +88,27 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
-    if (localStorage.getItem('token')) {
-      next();
-    } else {
-      next({ path: '/login' });
-    }
+    Axios({
+      method: "get",
+      url: "/login/valid",
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
+      .then(response => {
+        if (response.data.user) {
+          window.localStorage.setItem("token", response.data.token);
+          next();
+        } else {
+          window.localStorage.clear();
+          window.alert("登录信息已过期，请重新登录");
+          next({ path: '/login' });
+        }
+      })
+      .catch(err => {
+        throw (err);
+        // console.log("err")
+      });
   } else {
     next();
   }

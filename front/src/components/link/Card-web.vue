@@ -4,17 +4,17 @@
       <div style="position:absolute; left:1em; right:1em;">
         <h4 slot="title">
           <a @click="viewIt(website._id)" :href="website.url" target="_blank">
-            <Icon type="md-link"/>
+            <Icon type="md-link" />
             {{website.title}}
           </a>
 
-          <Icon v-if="website.note" type="ios-information-circle-outline"/>
+          <Icon v-if="website.note" type="ios-information-circle-outline" />
         </h4>
-        <br>
+        <br />
         <p>由{{website.user}}分享</p>
         <a :href="website.url" target="_blank">
           <!-- <img src="../../assets/default.png" :alt="website.title"> -->
-          <img :src="website.cover" :alt="website.title" :onerror="defaultImg">
+          <img :src="website.cover" :alt="website.title" :onerror="defaultImg" />
         </a>
         <p>{{website.info}}</p>
       </div>
@@ -24,18 +24,18 @@
       <div id="icons">
         <div style="float:left">
           <span>
-            <Icon type="md-calendar"/>
-            <Time :time="time" type="date"/>
+            <Icon type="md-calendar" />
+            <Time :time="time" type="date" />
           </span>
         </div>
 
         <div class="vote" style="float:right">
           <span>
-            <Icon type="md-eye" :class="{voted:viewd}"/>
+            <Icon type="md-eye" :class="{voted:viewd}" />
             {{website.view}}
           </span>
           <span @click="voteIt(website._id)">
-            <Icon :class="{voted:liked}" type="md-heart"/>
+            <Icon :class="{voted:liked}" type="md-heart" />
             {{website.likes}}
           </span>
         </div>
@@ -45,21 +45,18 @@
 </template>
 <script>
 export default {
-  props: ["website", "card_img"],
+  props: ["website", "index"],
   data() {
     return {
       time: this.website.c_date,
       viewd: false,
       liked: false,
-      defaultImg: 'this.src="' + require("../../assets/default.png") + '"'
+      defaultImg: 'this.src="' + require("../../assets/default.png") + '"',
+      bgc_img: ""
     };
   },
-  created() {
-    this.axios.get("http://kkboom.cn:9876/images?num=1").then(res => {
-      // console.log(res);
-      let bgc_url = res.data.img_list[0];
-      this.$refs.card.$el.style.backgroundImage = "url(" + bgc_url.url + ")";
-    });
+  mounted() {
+    this.$refs.card.$el.style.backgroundImage = "url(" + this.bgc_img + ")";
   },
   methods: {
     voteIt(id) {
@@ -79,6 +76,10 @@ export default {
         }
       });
     }
+  },
+  created() {
+    const list = window.localStorage.getItem("imgStr").split(",");
+    this.bgc_img = list[this.index];
   }
 };
 </script>

@@ -15,7 +15,7 @@
       </router-link>
 
       <div @mouseenter="show = true" @mouseleave="show = false" class="tip">
-        <Icon type="md-ionic"/>提示
+        <Icon type="md-ionic" />提示
       </div>
     </div>
 
@@ -32,10 +32,10 @@
       </div>
     </transition>
 
-    <Divider dashed/>
+    <Divider dashed />
     <Row justify="start" type="flex" class="code-row-bg">
       <Col :xs="24" :sm="24" :md="12" :lg="6" v-for="(item,index) in webForRow" :key="index">
-        <Cardweb :website="item"></Cardweb>
+        <Cardweb :index="index" :website="item"></Cardweb>
       </Col>
     </Row>
     <!-- 无匹配结果 -->
@@ -54,8 +54,7 @@ export default {
       webForRow: [],
       keywords: "",
       tempRow: [],
-      show: false,
-      card_imgs: []
+      show: false
     };
   },
   components: { Cardweb },
@@ -94,12 +93,17 @@ export default {
       this.tempRow = webs;
     });
 
-    // // 获取图片
-    // this.axios
-    //   .get("http://kkboom.cn:9876/images?num=" + this.webForRow.length)
-    //   .then(res => {
-    //     this.card_imgs = res.data.img_list;
-    //   });
+    // 获取图片
+    this.axios
+      .get("http://kkboom.cn:9876/images?num=" + this.webForRow.length)
+      .then(res => {
+        const img_list = res.data.img_list;
+        const imgStr = [];
+        img_list.forEach(item => {
+          imgStr.push(item.url);
+        });
+        window.localStorage.setItem("imgStr", imgStr);
+      });
   }
 };
 </script>

@@ -147,7 +147,6 @@ export default {
       }
     }).then(response => {
       this.links = response.data.webs;
-      console.log(this.links);
     });
   },
   methods: {

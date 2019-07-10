@@ -26,7 +26,8 @@ router.post('/', async ctx => {
             if (md5(data.password) == user.password) {
                 // 密码对，生成token
                 const payload = { id: user.id, name: user.name, avatar: user.avatar };
-                const token = jwt.sign(payload, config.TOKEN_KEY, { expiresIn: 3600 * 24 });
+                // console.log(payload);
+                const token = jwt.sign(payload, config.TOKEN_KEY, { expiresIn: 3600 * 24 * 2 });
                 // 设置session
                 ctx.status = 200;
                 ctx.body = { success: true, token: "Bearer " + token, user: user };
@@ -47,15 +48,24 @@ router.post('/', async ctx => {
  *  @在线时间更新认证，接口是私密的，需要token验证
  */
 router.get('/valid', passport.authenticate('jwt', { session: false }), async ctx => {
-    console.log("asd");
+    console.log('ds');
     try {
-        const admin = await Admin.find({ _id: ctx.state.user.id });
+        const admin = await Admin.findOne({ _id: ctx.state.user.id });
         console.log(admin);
-        ctx.status = 200;
-        ctx.body = admin[0];
+        if (admin) {
+            const payload = { id: admin.id, name: admin.name, avatar: admin.avatar };
+            // console.log(payload);
+            const token = jwt.sign(payload, config.TOKEN_KEY, { expiresIn: 3600 * 24 * 2 });
+            ctx.status = 200;
+            ctx.body = { msg: "success", user: { name: admin.name, avatar: admin.avatar }, token: "Bearer " + token };
+        } else {
+            ctx.status = 401;
+            ctx.body = { msg: "登录信息已过期，请重新登录" };
+        }
     } catch (e) {
+        console.log(e);
         ctx.status = 500;
-        ctx.body = { msg: '崩了！' };
+        ctx.body = { msg: '服务器崩了' };
     };
 });
 

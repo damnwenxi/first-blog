@@ -71,11 +71,11 @@
             </router-link>
           </li>
 
-          <li class="menu_item">
+          <!-- <li class="menu_item">
             <span id="button">
               <Icon type="ios-search" />Search
             </span>
-          </li>
+          </li>-->
         </ul>
       </div>
 
