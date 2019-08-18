@@ -3,10 +3,10 @@
     <div id="option" style="margin:1em">
       <Input
         class="search"
-        v-model="keywords"
-        v-on:input="searchByWords"
         placeholder="搜索书签..."
         style="width: 300px"
+        v-model="keywords"
+        v-on:input="searchByWords"
       />
       <!-- <Button id="btn1" type="primary" @click="searchByWords">搜索</Button> -->
 
@@ -20,7 +20,7 @@
     </div>
 
     <transition name="slide-fade">
-      <div v-if="show" class="tip-box">
+      <div class="tip-box" v-if="show">
         <p>
           你可以点击添加书签按钮来分享你觉得还不错的网站。我们会为你分享的每一个记录生成一张精美的卡片，所有人都可以在这个网站上看到它，或者你也可以将卡片导出为图片以分享给你的朋友们(该功能正在开发中...)。每一张卡片的背景都是随机生成的，它们都来自我的另一个网站：
           <a
@@ -33,8 +33,8 @@
     </transition>
 
     <Divider dashed />
-    <Row justify="start" type="flex" class="code-row-bg">
-      <Col :xs="24" :sm="24" :md="12" :lg="6" v-for="(item,index) in webForRow" :key="index">
+    <Row class="code-row-bg" justify="start" type="flex">
+      <Col :key="index" :lg="6" :md="12" :sm="24" :xs="24" v-for="(item,index) in webForRow">
         <Cardweb :index="index" :website="item"></Cardweb>
       </Col>
     </Row>
@@ -46,117 +46,119 @@
 </template>
 
 <script>
-import Cardweb from "./Card-web";
+import Cardweb from './Card-web'
 
 export default {
-  data() {
-    return {
-      webForRow: [],
-      keywords: "",
-      tempRow: [],
-      show: false
-    };
-  },
-  components: { Cardweb },
-  methods: {
-    searchByWords() {
-      // 匹配非空字符
-      var re = /\S+/;
-      if (re.test(this.keywords)) {
-        this.axios.get("/websites/search?k=" + this.keywords).then(res => {
-          if (res.status == 200) {
-            // 找到记录
-            if (res.data.webs) {
-              const item = res.data.webs;
-              this.webForRow = item;
+    data() {
+        return {
+            webForRow: [],
+            keywords: '',
+            tempRow: [],
+            show: false
+        }
+    },
+    components: { Cardweb },
+    methods: {
+        searchByWords() {
+            // 匹配非空字符
+            var re = /\S+/
+            if (re.test(this.keywords)) {
+                this.axios
+                    .get('/websites/search?k=' + this.keywords)
+                    .then(res => {
+                        if (res.status == 200) {
+                            // 找到记录
+                            if (res.data.webs) {
+                                const item = res.data.webs
+                                this.webForRow = item
+                            } else {
+                                this.webForRow = []
+                            }
+                        } else {
+                            this.$Notice.error({
+                                title: '服务器错误',
+                                desc: '服务器开小差啦，请稍后再试试'
+                            })
+                        }
+                    })
             } else {
-              this.webForRow = [];
+                this.webForRow = this.tempRow
             }
-          } else {
-            this.$Notice.error({
-              title: "服务器错误",
-              desc: "服务器开小差啦，请稍后再试试"
-            });
-          }
-        });
-      } else {
-        this.webForRow = this.tempRow;
-      }
-    }
-  },
-  created() {
-    // 获取web信息
-    this.axios.get("/websites").then(res => {
-      const webs = res.data.webs;
-      this.webForRow = webs;
-      // 设置一个临时变量用于存储第一次获取的值，避免每次输入关键词为空的时候发送无效请求
-      this.tempRow = webs;
-    });
+        }
+    },
+    created() {
+        // 获取web信息
+        this.axios.get('/websites').then(res => {
+            const webs = res.data.webs
+            this.webForRow = webs
+            // 设置一个临时变量用于存储第一次获取的值，避免每次输入关键词为空的时候发送无效请求
+            this.tempRow = webs
+        })
 
-    // 获取图片
-    this.axios
-      .get("http://kkboom.cn:9876/images?num=" + this.webForRow.length)
-      .then(res => {
-        const img_list = res.data.img_list;
-        const imgStr = [];
-        img_list.forEach(item => {
-          imgStr.push(item.url);
-        });
-        window.localStorage.setItem("imgStr", imgStr);
-      });
-  }
-};
+        // 获取图片
+        this.axios
+            .get('http://kkboom.cn:9876/images?num=' + this.webForRow.length)
+            .then(res => {
+                const img_list = res.data.img_list
+                const imgStr = []
+                img_list.forEach(item => {
+                    imgStr.push(item.url)
+                })
+                window.localStorage.setItem('imgStr', imgStr)
+            })
+    }
+}
 </script>
 
 <style scoped>
 #website {
-  width: 100%;
-  margin: 0 auto;
+    width: 1080px;
+    margin: 80px auto;
 }
 
 #btn2 {
-  background-color: rgb(175, 50, 60);
-  color: #f9f7f4;
+    background-color: rgb(175, 50, 60);
+    color: #f9f7f4;
 }
 #btn1,
 #btn2 {
-  margin-left: 10px;
-  border: 1px solid rgb(175, 50, 60);
+    margin-left: 10px;
+    border: 1px solid rgb(175, 50, 60);
 }
 
 .tip {
-  float: right;
-  font-size: 1.6em;
+    float: right;
+    font-size: 1.6em;
 }
 .tip:hover {
-  color: #9aa899;
-  cursor: pointer;
+    color: #9aa899;
+    cursor: pointer;
 }
 .tip i {
-  margin-top: -3px;
+    margin-top: -3px;
 }
 
 .tip-box {
-  background-color: #f9f7f4;
-  margin: 1em;
-  padding: 1em;
-  font-size: 1.6em;
-  box-shadow: 5px 5px 10px #ccc;
+    background-color: #f9f7f4;
+    margin: 1em;
+    padding: 1em;
+    font-size: 1.6em;
+    box-shadow: 0 0 40px #222;
 }
 
 .tip-box a {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
 .slide-fade-enter-active {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
+    transform: translateX(10px);
+    opacity: 0;
 }
 </style>
