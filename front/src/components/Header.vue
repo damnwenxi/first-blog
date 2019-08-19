@@ -3,11 +3,7 @@
     <div class="container">
       <div class="nav_left">
         <router-link to="/">
-          <img
-            src="../assets/logo2.png"
-            style="verticle-align:middle ;width:50px;display:inline-block"
-            alt
-          />Solotor
+          <img alt src="../assets/logo2.png" style="vertical-align:middle;width:50px;" />Solotor
         </router-link>
       </div>
 
@@ -70,17 +66,11 @@
               <Icon type="ios-contact-outline" />登录
             </router-link>
           </li>
-
-          <!-- <li class="menu_item">
-            <span id="button">
-              <Icon type="ios-search" />Search
-            </span>
-          </li>-->
         </ul>
       </div>
 
       <!-- 移动端 -->
-      <div style="float:right;display:none" class="phone-nav">
+      <div class="phone-nav" style="float:right;display:none">
         <Menu mode="horizontal">
           <Submenu name="3">
             <template slot="title">
@@ -116,78 +106,80 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      user: ""
-    };
-  },
-  inject: ["reload"],
-  mounted() {
-    this.user = localStorage.user;
-  },
-  methods: {
-    logout() {
-      localStorage.clear();
-      this.reload();
+    data() {
+        return {
+            user: ''
+        }
+    },
+    inject: ['reload'],
+    mounted() {
+        this.user = localStorage.user
+    },
+    methods: {
+        logout() {
+            localStorage.clear()
+            this.reload()
+        }
     }
-  }
-};
+}
 </script>
 
 <style scoped>
 header {
-  background: rgba(255, 255, 255, 0.94);
-  width: 100%;
-  height: 70px;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    background: rgba(47, 58, 62, 0.94);
+    width: 100%;
+    height: 100%;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 .container {
-  width: 1080px;
-  max-width: 100%;
-  margin: 0 auto;
-  height: 100%;
-  color: #3c3c3c;
+    width: 1080px;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    color: #fff;
 }
 
 .nav_left {
-  font-size: 20px;
-  line-height: 70px;
-  float: left;
+    font-size: 20px;
+    line-height: 70px;
+    float: left;
 }
 .nav_right {
-  float: right;
+    float: right;
 }
 .menu {
-  line-height: 70px;
-  display: flex;
+    line-height: 70px;
+    display: flex;
 }
 .menu_item {
-  font-weight: 400;
-  font-size: 14px;
-  list-style: none;
-  margin-left: 40px;
-  float: left;
+    font-weight: 400;
+    font-size: 14px;
+    list-style: none;
+    margin-left: 40px;
+    float: left;
 }
 #button {
-  margin-top: -3px;
-  font-size: 16px;
+    margin-top: -3px;
+    font-size: 16px;
 }
 #button:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 a {
-  color: #2c3e50;
+    color: #fff;
 }
 
 i {
-  margin-top: -2px;
+    margin-top: -2px;
 }
 .menu_item :hover {
-  color: rgb(175, 50, 60);
+    color: rgb(175, 50, 60);
 }
 </style>
 
