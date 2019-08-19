@@ -84,9 +84,6 @@ export default {
         'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
-label {
-    margin-bottom: 0 !important;
-}
 i {
     margin-top: -3px;
 }
@@ -118,9 +115,7 @@ body {
     width: auto;
     margin: 5px auto !important;
 }
-.v-note-wrapper {
-    background: rgba(255, 255, 255, 0.7) !important;
-}
+
 .v-note-wrapper .v-note-panel {
     border: none !important;
     .v-note-show {

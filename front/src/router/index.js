@@ -11,6 +11,7 @@ import Edit from "../components/blog/Editblog";
 import About from "../components/user/Aboutme";
 import Collection from "../components/user/Collection";
 import Error from "../components/Error";
+import Axios from "axios";
 
 Vue.use(Router);
 

@@ -1,20 +1,20 @@
 <template>
-  <div class="coolection">
-    <Divider orientation="left">作品集</Divider>
+  <div class="collection">
+    <Divider orientation="left" style="color:#fff">作品集</Divider>
 
     <div>
-      <Row type="flex" justify="start" align="top">
+      <Row align="top" justify="start" type="flex">
         <!-- 临时文件仓库 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://files.kkboom.cn"
               @mouseenter="show1 = true"
               @mouseleave="show1 = false"
+              class="enter-tag"
+              href="http://files.kkboom.cn"
               target="_blank"
             >
-              <img src="../../assets/files.jpg" alt>
+              <img alt src="../../assets/files.jpg" />
 
               <transition name="down">
                 <p v-if="show1">一个在线文件暂存网站，它能帮你暂存一些小的文件，以便你在不同的设备之间下载它们。请不要上传任何私密文件，本站对由此造成的损失概不负责！</p>
@@ -24,7 +24,7 @@
                 <h4>临时文件仓库</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -32,12 +32,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -48,16 +48,16 @@
         </Col>
 
         <!-- 中国电竞行业的产业化进程 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://news.kkboom.cn"
               @mouseenter="show6 = true"
               @mouseleave="show6 = false"
+              class="enter-tag"
+              href="http://news.kkboom.cn"
               target="_blank"
             >
-              <img src="../../assets/news.jpg" alt>
+              <img alt src="../../assets/news.jpg" />
 
               <transition name="down">
                 <p
@@ -69,7 +69,7 @@
                 <h4>电竞行业的产业化进程</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -77,12 +77,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -93,16 +93,16 @@
         </Col>
 
         <!-- 监控网站 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://watch.kkboom.cn"
               @mouseenter="show2 = true"
               @mouseleave="show2 = false"
+              class="enter-tag"
+              href="http://watch.kkboom.cn"
               target="_blank"
             >
-              <img src="../../assets/watch.jpg" alt>
+              <img alt src="../../assets/watch.jpg" />
               <transition name="down">
                 <p
                   v-if="show2"
@@ -113,7 +113,7 @@
                 <h4>流量监控网站</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -121,12 +121,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -137,16 +137,16 @@
         </Col>
 
         <!-- 电竞报道统计 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://kkboom.cn"
               @mouseenter="show7 = true"
               @mouseleave="show7 = false"
+              class="enter-tag"
+              href="http://kkboom.cn"
               target="_blank"
             >
-              <img src="../../assets/report.jpg" alt>
+              <img alt src="../../assets/report.jpg" />
               <transition name="down">
                 <p
                   v-if="show7"
@@ -157,7 +157,7 @@
                 <h4>电竞新闻爬虫</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -165,12 +165,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -181,16 +181,16 @@
         </Col>
 
         <!-- 高清图库 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://images.kkboom.cn"
               @mouseenter="show8 = true"
               @mouseleave="show8 = false"
+              class="enter-tag"
+              href="http://images.kkboom.cn"
               target="_blank"
             >
-              <img src="../../assets/images.jpg" alt>
+              <img alt src="../../assets/images.jpg" />
               <transition name="down">
                 <p
                   v-if="show8"
@@ -201,7 +201,7 @@
                 <h4>高清图库</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -209,12 +209,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -225,16 +225,16 @@
         </Col>
 
         <!-- 视频播放器 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://demo.kkboom.cn/video.html"
               @mouseenter="show3 = true"
               @mouseleave="show3 = false"
+              class="enter-tag"
+              href="http://demo.kkboom.cn/video.html"
               target="_blank"
             >
-              <img src="../../assets/video.jpg" alt>
+              <img alt src="../../assets/video.jpg" />
               <transition name="down">
                 <p v-if="show3">一个用原生JS写的在线视频播放组件，能加载本地资源和网络资源并播放。</p>
               </transition>
@@ -243,7 +243,7 @@
                 <h4>视频播放器</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -251,12 +251,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -267,16 +267,16 @@
         </Col>
 
         <!-- 日历待办 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://demo.kkboom.cn/clander.html"
               @mouseenter="show4 = true"
               @mouseleave="show4 = false"
+              class="enter-tag"
+              href="http://demo.kkboom.cn/clander.html"
               target="_blank"
             >
-              <img src="../../assets/clander.jpg" alt>
+              <img alt src="../../assets/clander.jpg" />
               <transition name="down">
                 <p v-if="show4">基于原生JS写的一个日历待办小组件。</p>
               </transition>
@@ -285,7 +285,7 @@
                 <h4>日历待办</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -293,12 +293,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -309,16 +309,16 @@
         </Col>
 
         <!-- 3D翻转相册 -->
-        <Col :xs="24" :sm="24" :md="12" :lg="8">
+        <Col :lg="8" :md="12" :sm="24" :xs="24">
           <div class="collection-card">
             <a
-              class="enter-tag"
-              href="http://demo.kkboom.cn/3dimg.html"
               @mouseenter="show5 = true"
               @mouseleave="show5 = false"
+              class="enter-tag"
+              href="http://demo.kkboom.cn/3dimg.html"
               target="_blank"
             >
-              <img src="../../assets/3dimg.jpg" alt>
+              <img alt src="../../assets/3dimg.jpg" />
               <transition name="down">
                 <p
                   v-if="show5"
@@ -329,7 +329,7 @@
                 <h4>3D动画相册</h4>
                 <div style="float:left">
                   <span>
-                    <Icon type="md-calendar"/>
+                    <Icon type="md-calendar" />
                     <!-- <Time :time="time" type="date"/> -->
                     2019-12-12
                   </span>
@@ -337,12 +337,12 @@
 
                 <div class="vote" style="float:right">
                   <span>
-                    <Icon type="md-eye"/>
+                    <Icon type="md-eye" />
                     <!-- {{website.view}} -->
                     123
                   </span>
                   <span>
-                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark"/>
+                    <Icon @click.stop.prevent="handleLike()" type="ios-bookmark" />
                     <!-- {{website.likes}} -->
                     123
                   </span>
@@ -354,7 +354,7 @@
       </Row>
     </div>
 
-    <br>
+    <br />
     <h4>
       努力更新完善中...(PS:如果你觉得有什么地方不足或者有更好的建议的话，欢迎
       <a href="http://localhost:9002/collection#/about">和我联系</a>^_^)
@@ -363,94 +363,100 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      show1: false,
-      show2: false,
-      show3: false,
-      show4: false,
-      show5: false,
-      show6: false,
-      show7: false,
-      show8: false
-    };
-  },
-  methods: {
-    handleLike() {
-      alert("aa");
+    data() {
+        return {
+            show1: false,
+            show2: false,
+            show3: false,
+            show4: false,
+            show5: false,
+            show6: false,
+            show7: false,
+            show8: false
+        }
+    },
+    methods: {
+        handleLike() {
+            alert('aa')
+        }
     }
-  }
-};
+}
 </script>
 
 <style scoped>
+.collection {
+    width: 1080px;
+    margin: 0 auto;
+    padding-top: 80px;
+}
 .collection-card {
-  position: relative;
-  width: 90%;
-  min-height: 300px;
-  max-height: 400px;
-  margin: 1em auto;
-  box-shadow: 5px 10px 10px #;
+    position: relative;
+    width: 90%;
+    min-height: 300px;
+    max-height: 400px;
+    margin: 1em auto;
+    box-shadow: 5px 10px 10px #;
 }
 .collection-card img {
-  max-height: 400px;
-  min-height: 300px;
-  width: 100%;
-  overflow: hidden;
+    max-height: 400px;
+    min-height: 300px;
+    width: 100%;
+    overflow: hidden;
 }
 .collection-card a {
-  color: #bbb !important;
+    color: #bbb !important;
 }
 
 .collection-card a:hover {
-  color: #fff !important;
+    color: #fff !important;
 }
 .text {
-  left: 1em;
-  right: 1em;
-  position: absolute;
-  bottom: 1em;
+    left: 1em;
+    right: 1em;
+    position: absolute;
+    bottom: 1em;
 }
 .text span {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 i {
-  margin-top: -3px;
+    margin-top: -3px;
 }
 
 .vote {
-  z-index: 2;
+    z-index: 2;
 }
 
 h4 a {
-  color: #444;
+    color: #fff;
 }
 
 h4 {
-  margin: 1em;
+    color: #bbb;
+    margin: 1em;
 }
 .collection-card p {
-  font-size: 1.4em;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  color: #444;
-  font-weight: 500;
-  line-height: 1.6em;
-  padding: 1em;
-  bottom: 2em;
-  margin-bottom: 3em;
-  background-color: rgba(255, 255, 255, 0.7);
+    font-size: 1.4em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #444;
+    font-weight: 500;
+    line-height: 1.6em;
+    padding: 1em;
+    bottom: 2em;
+    margin-bottom: 3em;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* 动画 */
 .down-enter-active,
 .down-leave-active {
-  transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 .down-enter, .down-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+    opacity: 0;
 }
 </style>
