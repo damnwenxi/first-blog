@@ -6,6 +6,7 @@
       stripe
       :columns="columns"
       :data="links"
+      height="500"
     ></Table>
 
     <!-- 全局预览框 -->

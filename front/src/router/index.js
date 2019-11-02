@@ -24,8 +24,8 @@ const router = new Router({
     },
     {
       path: "/",
-      name: "website",
-      component: Website
+      name: "blogs",
+      component: Blog
     },
     {
       path: "/addweb",

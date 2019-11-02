@@ -384,18 +384,19 @@ export default {
 </script>
 
 <style scoped>
+
+img{
+  display: block;
+}
 .collection {
-    width: 1080px;
+    max-width: 1080px;
     margin: 0 auto;
-    padding-top: 80px;
 }
 .collection-card {
     position: relative;
     width: 90%;
-    min-height: 300px;
-    max-height: 400px;
     margin: 1em auto;
-    box-shadow: 5px 10px 10px #;
+    box-shadow: 0 0 30px #222;
 }
 .collection-card img {
     max-height: 400px;

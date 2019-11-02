@@ -7,7 +7,7 @@
     <div class="center">
       <router-view v-if="isRouterAlive" />
     </div>
-    <Footer></Footer>
+    <Footer v-if="showFooter()"></Footer>
   </div>
 </template>
 
@@ -31,6 +31,9 @@ export default {
     },
     components: { Header, Footer },
     methods: {
+        showFooter(){
+            return !window.location.href.includes('admin')
+        },
         reload() {
             this.isRouterAlive = false
             this.$nextTick(() => {
@@ -38,11 +41,15 @@ export default {
             })
         },
         handleScroll(e) {
+            let path = this.$route.path
+            if(path !== '/' || !~path.includes('blogs')){
+                return
+            }
             let header = this.$refs.header
             let curentScrollTop =
-                document.documentElement.scrollTop ||
+                (document.documentElement?document.documentElement.scrollTop:'') ||
                 window.pageYOffset ||
-                document.body.scrollTop ||
+                (document.body?document.body.scrollTop:'') ||
                 document.querySelector(this.el).scrollTop
 
             if (curentScrollTop < 20) {
@@ -67,21 +74,34 @@ export default {
         }
     },
     mounted() {
-        window.addEventListener(
-            'scroll',
-            this.throttle(this.handleScroll, 200),
-            true
-        )
+        // window.addEventListener(
+        //     'scroll',
+        //     this.throttle(this.handleScroll, 200),
+        //     true
+        // )
     }
 }
 </script>
 
 <style lang="scss">
 #app {
-    height: 100%;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #aaa;
     box-sizing: border-box;
     font-family: 'SF Pro SC', 'SF Pro Display', 'SF Pro Icons', 'PingFang SC',
         'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.center{
+    padding: 28px 0;
+}
+
+.container{
+    padding: 0 24px;
 }
 
 i {
@@ -95,7 +115,6 @@ a:hover {
 }
 html,
 body {
-    height: 100%;
     background-color: rgb(47, 58, 62);
     width: 100%;
     font-size: 10px !important;

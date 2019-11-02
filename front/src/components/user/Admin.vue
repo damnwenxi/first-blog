@@ -27,4 +27,18 @@ export default {
 
 
 <style scoped>
+
+#admin{
+  padding: 0 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+.ivu-tabs{
+  color: rgb(169, 170, 170);
+}
+
 </style>

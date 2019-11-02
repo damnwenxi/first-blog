@@ -56,6 +56,9 @@ export default {
             var date = new Date(time).toLocaleString()
             this.time = date
         })
+    },
+    mounted(){
+      window.document.documentElement.scrollTop = 0;
     }
 }
 </script>

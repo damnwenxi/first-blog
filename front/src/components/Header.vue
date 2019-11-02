@@ -10,11 +10,11 @@
       <!-- 大屏设备 -->
       <div class="nav_right">
         <ul class="menu">
-          <li class="menu_item">
+          <!-- <li class="menu_item">
             <router-link to="/">
               <Icon type="ios-bookmark-outline" />共享书签
             </router-link>
-          </li>
+          </li> -->
 
           <li class="menu_item">
             <router-link to="/blogs">
@@ -51,9 +51,9 @@
                 <Icon type="ios-arrow-down"></Icon>
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem>
+                <!-- <DropdownItem>
                   <router-link to="/about">我的信息</router-link>
-                </DropdownItem>
+                </DropdownItem> -->
                 <DropdownItem>
                   <router-link to="/collection">作品集</router-link>
                 </DropdownItem>
@@ -134,11 +134,10 @@ header {
     position: fixed;
     top: 0;
     z-index: 1;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 .container {
-    width: 1080px;
-    max-width: 100%;
+    max-width: 1080px;
     margin: 0 auto;
     height: 100%;
     color: #fff;

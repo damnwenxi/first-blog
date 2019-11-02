@@ -1,20 +1,6 @@
 <template>
   <div id="blog">
-    <Row justify="space-around" type="flex">
-      <Col :lg="18" :md="16" :sm="24" :xs="24">
-        <Input
-          placeholder="关键字搜索..."
-          search
-          style="z-index:0"
-          v-model="keyWords"
-          v-on:input="search"
-        />
-        <hr style="margin:10px 0" />
-        <h4 v-if="keyWords">匹配记录：{{blogs.length}} 条。</h4>
-        <br />
-      </Col>
-    </Row>
-
+    
     <Row
       :key="index"
       class="code-row-bg"
@@ -30,7 +16,7 @@
     <p style="text-align:center">
       <Page :current="page" :page-size="10" :total="all" @on-change="pageJump" />
     </p>
-    <a href="#app" ref="top" style="display:none">top</a>
+    <a href="#" ref="top" style="display:none">top</a>
   </div>
 </template>
 
@@ -109,7 +95,8 @@ export default {
 
 <style scoped>
 #blog {
-    margin: 80px auto;
-    width: 1080px;
+    color: rgb(81, 90, 110);
+    margin: 0 auto;
+    max-width: 1080px;
 }
 </style>

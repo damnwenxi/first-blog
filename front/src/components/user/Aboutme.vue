@@ -114,7 +114,7 @@ export default {
 
 <style scoped>
 #aboutme {
-    width: 1080px;
+    max-width: 1080px;
     margin: 0 auto;
     padding-top: 80px;
     color: #ddd;

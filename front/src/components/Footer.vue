@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .container {
-    width: 1080px;
+    max-width: 1080px;
     margin: 5em auto;
     font-size: 1.2em;
 }

@@ -205,6 +205,5 @@ export default {
 .container {
     max-width: 1080px;
     margin: 0 auto;
-    padding-top: 80px;
 }
 </style>

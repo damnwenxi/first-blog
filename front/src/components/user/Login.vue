@@ -59,10 +59,14 @@ export default {
   max-width: 360px;
   padding: 1em;
   margin: 100px auto;
-  top: 200px;
-  bottom: 0;
-  left: 0;
-  right: 0;
+}
+
+.ivu-form .ivu-form-item-label{
+    color: #fff !important;
+}
+
+.ivu-input{
+  color: #fff;
 }
 </style>
 

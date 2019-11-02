@@ -6,6 +6,7 @@
       stripe
       :columns="columns"
       :data="blogs"
+      height="500"
     ></Table>
 
     <br />
